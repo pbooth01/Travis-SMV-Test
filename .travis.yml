@@ -1,0 +1,11 @@
+
+sudo: true
+language: generic
+
+services:
+  - docker
+
+script:
+  - echo "yes!"
+after_success:
+  - make version
