@@ -8,5 +8,5 @@ script:
   - echo "yes!"
 after_success:
   - git config --global user.email "$GITEMAIL"
-  - git config --global user.name "GITUSERNAME"
+  - git config --global user.name "$GITUSERNAME"
   - make version
