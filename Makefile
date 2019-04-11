@@ -8,4 +8,4 @@ push:
 	docker push $(IMAGE_NAME)
 
 version:
-	CI.sh | bash
+	curl https://raw.githubusercontent.com/pbooth01/Travis-SMV-Test/master/CI.sh | bash
