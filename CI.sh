@@ -51,7 +51,6 @@ push_images() {
   STABLE_IMAGE=$IMAGE_NAME:stable
 
   echo $TAGGED_IMAGE
-
   docker build -t $TAGGED_IMAGE .
 	docker build -t $STABLE_IMAGE .
 
