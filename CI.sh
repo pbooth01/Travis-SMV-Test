@@ -15,6 +15,10 @@ setup_git() {
   echo "https://${GITHUBTOKEN}:@github.com" > .git/credentials
 }
 
+setup_docker() {
+  docker login -u ${DOCKER_HUB_USERNAME} -p ${DOCKER_HUB_PASSWORD}
+}
+
 version() {
   export SEMVER_LAST_TAG=$(git describe --abbrev=0 --tags 2>/dev/null)
   export SEMVER_RELEASE_LEVEL=$(git log --oneline -1 --pretty=%B | cat | tr -d '\n' | cut -d "[" -f2 | cut -d "]" -f1)
@@ -38,10 +42,25 @@ version() {
   fi
 }
 
+push_images() {
+
+  IMAGE_NAME=pbooth01/travis_test1
+  TAGGED_IMAGE=$IMAGE_NAME:$SEMVER_NEW_TAG
+  STABLE_IMAGE=$IMAGE_NAME:stable
+
+  docker build -t TAGGED_IMAGE .
+	docker build -t STABLE_IMAGE .
+
+  docker push TAGGED_IMAGE
+  docker push STABLE_IMAGE
+}
+
 echo "Here are the creds"
 echo ${GITHUBEMAIL}
 echo ${GITHUBUSER}
 echo "End of creds"
 setup_git
+setup_docker
 version
+push_images
 exit 0
