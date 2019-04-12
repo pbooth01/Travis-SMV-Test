@@ -14,8 +14,8 @@ build_docker_images:
 
 push:
 #	docker push $(IMAGE_NAME)
-docker push $(TAGGED_IMAGE)
-docker push $(STABLE_IMAGE)
+	docker push $(TAGGED_IMAGE)
+	docker push $(STABLE_IMAGE)
 
 #version:
 #	curl https://raw.githubusercontent.com/pbooth01/Travis-SMV-Test/master/CI.sh | bash
