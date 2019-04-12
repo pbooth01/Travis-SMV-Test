@@ -37,6 +37,7 @@ version() {
       >&2 echo "No release level defined"
   fi
 }
+
 echo "Here are the creds"
 echo ${GITHUBEMAIL}
 echo ${GITHUBUSER}
