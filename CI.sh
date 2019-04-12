@@ -23,6 +23,8 @@ version() {
   export SEMVER_LAST_TAG=$(git describe --abbrev=0 --tags 2>/dev/null)
   export SEMVER_RELEASE_LEVEL=$(git log --oneline -1 --pretty=%B | cat | tr -d '\n' | cut -d "[" -f2 | cut -d "]" -f1)
 
+  echo "THE LAST TAG IS:"
+  echo SEMVER_LAST_TAG
   #curl -o /tmp/hub.tgz https://github.com/github/hub/releases/download/v2.2.9/hub-linux-arm64-2.2.9.tgz
   #tar -xvzf /tmp/hub.tgz -C /tmp
 
@@ -53,8 +55,8 @@ push_images() {
   docker build -t $TAGGED_IMAGE .
 	docker build -t $STABLE_IMAGE .
 
-  docker push TAGGED_IMAGE
-  docker push STABLE_IMAGE
+  docker push $TAGGED_IMAGE
+  docker push $STABLE_IMAGE
 }
 
 echo "Here are the creds"
