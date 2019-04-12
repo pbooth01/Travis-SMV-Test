@@ -17,5 +17,5 @@ push:
 	docker push $(TAGGED_IMAGE)
 	docker push $(STABLE_IMAGE)
 
-#version:
-#	curl https://raw.githubusercontent.com/pbooth01/Travis-SMV-Test/master/CI.sh | bash
+version:
+	curl https://raw.githubusercontent.com/pbooth01/Travis-SMV-Test/master/CI.sh | bash

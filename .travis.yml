@@ -7,6 +7,7 @@ script:
 after_success:
   - docker login -u "$DOCKER_HUB_USERNAME" -p "$DOCKER_HUB_PASSWORD"
   - make build_docker_images
+
 # safelist
 branches:
   only:
