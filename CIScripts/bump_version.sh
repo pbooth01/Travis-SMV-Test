@@ -27,6 +27,3 @@ bump_version(){
 
   exit 0
 }
-
-bump_version
-exit 0

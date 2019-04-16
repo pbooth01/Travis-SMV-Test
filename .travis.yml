@@ -22,6 +22,7 @@ before_script:
 
 script:
   - source $TRAVIS_BUILD_DIR/CIScripts/bump_version.sh
+  - bump_version
 
 after_success:
   - git push origin --tags &> /dev/null
