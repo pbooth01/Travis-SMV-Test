@@ -1,5 +1,5 @@
 push_images() {
-  SEMVER_NEW_TAG="$(cat /persist/newTag.txt)"
+  SEMVER_NEW_TAG="$(cat ${TRAVIS_BUILD_DIR}/persist/newTag.txt)"
   echo $SEMVER_NEW_TAG
   TAGGED_IMAGE=${IMAGE_NAME}:$SEMVER_NEW_TAG
   STABLE_IMAGE=${IMAGE_NAME}:stable
