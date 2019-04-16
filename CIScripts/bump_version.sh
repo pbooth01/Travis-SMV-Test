@@ -23,4 +23,4 @@ bump_version(){
 }
 
 bump_version
-echo $(($SEMVER_NEW_TAG))
+echo $SEMVER_NEW_TAG
