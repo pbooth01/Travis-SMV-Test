@@ -20,7 +20,7 @@ before_script:
   - docker login -u ${DOCKER_HUB_USERNAME} -p ${DOCKER_HUB_PASSWORD}
 
 script:
-  - version = "$(bash $TRAVIS_BUILD_DIR/CIScripts/bump_version.sh)"
+  - version="$(bash $TRAVIS_BUILD_DIR/CIScripts/bump_version.sh)"
   - echo ${version}
 after_success:
   - git push origin --tags &> /dev/null
