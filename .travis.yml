@@ -16,17 +16,20 @@ before_install:
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
-#Configuring docker and git so our changes can be deployed
-before_script: ./CIScripts/setup_git.sh
+
+#Configuring docker and git so our changes can be deployed to DockerHub
+before_script:
+  - bash /CIScripts/setup_git.sh
   - docker login -u ${DOCKER_HUB_USERNAME} -p ${DOCKER_HUB_PASSWORD}
 
-script: ./CIScripts/bump_version.sh
+script:
+  - bash /CIScripts/bump_version.sh
 
 after_success:
   - git push origin --tags &> /dev/null
 
 deploy:
-  script: ./CIScripts/push_images.sh
+  script: bash /CIScripts/push_images.sh
 
 # safelist
 branches:
