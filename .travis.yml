@@ -19,10 +19,10 @@ before_script:
   - bash $TRAVIS_BUILD_DIR/CIScripts/setup_git.sh
   - docker login -u ${DOCKER_HUB_USERNAME} -p ${DOCKER_HUB_PASSWORD}
 
-script: env SEMVER_NEW_TAG
+script:
   - bash $TRAVIS_BUILD_DIR/CIScripts/bump_version.sh
 
-after_success: env SEMVER_NEW_TAG
+after_success:
   - git push origin --tags &> /dev/null
   - bash $TRAVIS_BUILD_DIR/CIScripts/push_images.sh
 

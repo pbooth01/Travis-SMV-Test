@@ -20,6 +20,7 @@ bump_version(){
       git tag $SEMVER_NEW_TAG &> /dev/null
       #git push origin --tags &> /dev/null
       echo $SEMVER_NEW_TAG
+      echo $SEMVER_NEW_TAG >> /persist/newTag.txt
   else
       >&2 echo "No release level defined"
       exit 1
