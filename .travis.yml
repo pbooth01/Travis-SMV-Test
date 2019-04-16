@@ -19,9 +19,10 @@ before_install:
 before_script:
   - bash $TRAVIS_BUILD_DIR/CIScripts/setup_git.sh
   - docker login -u ${DOCKER_HUB_USERNAME} -p ${DOCKER_HUB_PASSWORD}
+  - source $TRAVIS_BUILD_DIR/CIScripts/bump_version.sh
 
 script:
-  - bash $TRAVIS_BUILD_DIR/CIScripts/bump_version.sh
+  - bump_version
 
 after_success:
   - git push origin --tags &> /dev/null
