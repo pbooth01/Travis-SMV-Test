@@ -23,8 +23,8 @@ script:
   - version="$(bash $TRAVIS_BUILD_DIR/CIScripts/bump_version.sh)"
   - echo ${version}
 after_success:
-  - git push origin --tags &> /dev/null
-  - bash $TRAVIS_BUILD_DIR/CIScripts/push_images.sh
+  - git push origin --tags
+  - bash $TRAVIS_BUILD_DIR/CIScripts/push_images.sh ${version}
 
 # safelist
 branches:

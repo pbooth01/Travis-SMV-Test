@@ -1,5 +1,5 @@
 push_images() {
-  SEMVER_NEW_TAG="$(cat ${TRAVIS_BUILD_DIR}/persist/newTag.txt)"
+  SEMVER_NEW_TAG=$1
   echo $SEMVER_NEW_TAG
   TAGGED_IMAGE=${IMAGE_NAME}:$SEMVER_NEW_TAG
   STABLE_IMAGE=${IMAGE_NAME}:stable
@@ -11,6 +11,6 @@ push_images() {
   docker push $TAGGED_IMAGE
   docker push $STABLE_IMAGE
 }
-echo ${IMAGE_NAME}
+
 push_images
 exit 0
