@@ -20,8 +20,6 @@ bump_version(){
       >&2 echo "No release level defined"
       exit 1
   fi
-
-  exit 0
 }
 
 bump_version
