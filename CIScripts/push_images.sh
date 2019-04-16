@@ -1,8 +1,8 @@
 push_images() {
 
-  IMAGE_NAME=$IMAGE_NAME
-  TAGGED_IMAGE=$IMAGE_NAME:$SEMVER_NEW_TAG
-  STABLE_IMAGE=$IMAGE_NAME:stable
+
+  export TAGGED_IMAGE=${IMAGE_NAME}:${SEMVER_NEW_TAG}
+  export STABLE_IMAGE=${IMAGE_NAME}:stable
   echo $TAGGED_IMAGE
 
   docker build -t $TAGGED_IMAGE .
