@@ -7,7 +7,6 @@ setup_git() {
   git config --global user.email ${GITHUBEMAIL}
   git config --global user.name ${GITHUBUSER}
   git config --global push.default matching
-
   # Get the credentials from a file
   git config credential.helper "store --file=.git/credentials"
 
@@ -50,7 +49,7 @@ push_images() {
   TAGGED_IMAGE=$IMAGE_NAME:$SEMVER_NEW_TAG
   STABLE_IMAGE=$IMAGE_NAME:stable
   echo $TAGGED_IMAGE
-  
+
   docker build -t $TAGGED_IMAGE .
 	docker build -t $STABLE_IMAGE .
 
