@@ -6,7 +6,6 @@ services:
 #Setting the environment variable for ImageName so it can be used during the building of docker images.
 env:
   - DOCKER_COMPOSE_VERSION=2.4
-
 #Installing Docker Compose
 before_install:
   - sudo rm /usr/local/bin/docker-compose
