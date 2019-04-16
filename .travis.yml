@@ -19,17 +19,17 @@ before_install:
 
 #Configuring docker and git so our changes can be deployed to DockerHub
 before_script:
-  - bash /CIScripts/setup_git.sh
+  - bash $TRAVIS_BUILD_DIR/CIScripts/setup_git.sh
   - docker login -u ${DOCKER_HUB_USERNAME} -p ${DOCKER_HUB_PASSWORD}
 
 script:
-  - bash /CIScripts/bump_version.sh
+  - bash $TRAVIS_BUILD_DIR/CIScripts/bump_version.sh
 
 after_success:
   - git push origin --tags &> /dev/null
 
 deploy:
-  script: bash /CIScripts/push_images.sh
+  script: bash $TRAVIS_BUILD_DIR/CIScripts/push_images.sh
 
 # safelist
 branches:
