@@ -15,9 +15,8 @@ bump_version(){
   fi
 
   if [ -n $SEMVER_RELEASE_LEVEL ]; then
-      exit 0
       git clone https://github.com/fsaintjacques/semver-tool /tmp/semver &> /dev/null
-      SEMVER_NEW_TAG=$(/tmp/semver/src/semver bump $SEMVER_RELEASE_LEVEL $SEMVER_LAST_TAG)
+      $SEMVER_NEW_TAG=$(/tmp/semver/src/semver bump $SEMVER_RELEASE_LEVEL $SEMVER_LAST_TAG)
       git tag $SEMVER_NEW_TAG &> /dev/null
       #git push origin --tags &> /dev/null
       echo $SEMVER_NEW_TAG
@@ -28,3 +27,6 @@ bump_version(){
 
   exit 0
 }
+
+bump_version
+exit 0

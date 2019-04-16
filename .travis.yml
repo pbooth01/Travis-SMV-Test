@@ -6,7 +6,6 @@ services:
 #Setting the environment variable for ImageName so it can be used during the building of docker images.
 env:
   - DOCKER_COMPOSE_VERSION=2.4
-  - IMAGE_NAME="pbooth01/travis_test1"
 
 #Installing Docker Compose
 before_install:
@@ -15,16 +14,15 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 
-#Configuring docker and git so our changes can be deployed to DockerHub
+#Configuring docker and git so our changes can be deployed to DockerHub and tags can be pushed to our repo
 before_script:
   - bash $TRAVIS_BUILD_DIR/CIScripts/setup_git.sh
   - docker login -u ${DOCKER_HUB_USERNAME} -p ${DOCKER_HUB_PASSWORD}
 
-script:
-  - source $TRAVIS_BUILD_DIR/CIScripts/bump_version.sh
-  - bump_version
+script: env SEMVER_NEW_TAG
+  - bash $TRAVIS_BUILD_DIR/CIScripts/bump_version.sh
 
-after_success:
+after_success: env SEMVER_NEW_TAG
   - git push origin --tags &> /dev/null
   - bash $TRAVIS_BUILD_DIR/CIScripts/push_images.sh
 
