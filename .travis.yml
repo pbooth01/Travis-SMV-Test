@@ -6,7 +6,7 @@ services:
 #Setting the environment variable for ImageName so it can be used during the building of docker images.
 env:
   - DOCKER_COMPOSE_VERSION=2.4
-  - IMAGE_NAME="pbooth01/travis_test1"
+  - IMAGE_NAME=pbooth01/travis_test1
 
 #Installing Docker Compose
 before_install:
@@ -25,10 +25,7 @@ script:
 
 after_success:
   - git push origin --tags &> /dev/null
-
-deploy:
-  provider: script
-  script: bash $TRAVIS_BUILD_DIR/CIScripts/push_images.sh
+  - bash $TRAVIS_BUILD_DIR/CIScripts/push_images.sh
 
 # safelist
 branches:
