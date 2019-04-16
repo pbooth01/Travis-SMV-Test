@@ -1,5 +1,5 @@
 push_images() {
-
+  echo "Iinsode Push Images"
   echo ${IMAGE_NAME}
   export TAGGED_IMAGE=${IMAGE_NAME}:${SEMVER_NEW_TAG}
   export STABLE_IMAGE=${IMAGE_NAME}:stable
