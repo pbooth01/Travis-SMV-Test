@@ -16,7 +16,6 @@ bump_version(){
       $SEMVER_NEW_TAG=$(/tmp/semver/src/semver bump $SEMVER_RELEASE_LEVEL $SEMVER_LAST_TAG)
       git tag $SEMVER_NEW_TAG &> /dev/null
       #git push origin --tags &> /dev/null
-      echo $(($SEMVER_NEW_TAG))
   else
       >&2 echo "No release level defined"
       exit 1
@@ -26,4 +25,4 @@ bump_version(){
 }
 
 bump_version
-exit 0
+echo $(($SEMVER_NEW_TAG))
