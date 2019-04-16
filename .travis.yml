@@ -1,13 +1,41 @@
 sudo: true
+
 language: generic
+
 services:
   - docker
-script:
-  - make version
-#after_success:
-#  - docker login -u "$DOCKER_HUB_USERNAME" -p "$DOCKER_HUB_PASSWORD"
-#  - make build_docker_images
+#Setting the appropriate Docker Compose version for our IRIS DEMO IMAGES
+#Setting the environment variable for ImageName so it can be used during the building of docker images.
+env:
+  - DOCKER_COMPOSE_VERSION=2.4
+  - IMAGE_NAME=pbooth01/travis_test1
+
+#Installing Docker Compose
+before_install:
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+#Configuring docker and git so our changes can be deployed
+before_script:
+  - ./CIScripts/setup_git.sh
+  - docker login -u ${DOCKER_HUB_USERNAME} -p ${DOCKER_HUB_PASSWORD}
+
+script: ./CIScripts/bump_version.sh
+
+after_success:
+  - git push origin --tags &> /dev/null
+
+deploy:
+  script: ./CIScripts/push_images.sh
+
 # safelist
 branches:
   only:
   - master
+#notifications:
+#  email:
+#    recipients:
+#      - phillip.booth2015@gmail.com
+#    on_success: never # default: change
+#    on_failure: always # default: always
