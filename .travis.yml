@@ -1,7 +1,5 @@
 sudo: true
-
 language: generic
-
 services:
   - docker
 #Setting the appropriate Docker Compose version for our IRIS DEMO IMAGES
