@@ -29,6 +29,7 @@ after_success:
   - git push origin --tags &> /dev/null
 
 deploy:
+  provider: script
   script: bash $TRAVIS_BUILD_DIR/CIScripts/push_images.sh
 
 # safelist
