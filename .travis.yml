@@ -23,7 +23,7 @@ before_script:
 
 script:
   - version="$(bash $TRAVIS_BUILD_DIR/CIScripts/bump_version.sh)"
-  - echo ${version
+  - echo ${version}
 
 after_success:
   - git push origin --tags
