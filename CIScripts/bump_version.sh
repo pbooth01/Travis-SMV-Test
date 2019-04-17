@@ -3,10 +3,8 @@
 #Method to implement our semantic versioning
 #Commit messages to master must be passed in with a release level [major] [minor] [patch] or else build will fail
 bump_version(){
-  export SEMVER_LAST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1) >/dev/null)
+  export SEMVER_LAST_TAG=$((git describe --match "[0-9].[0-9].[0-9]" --tags $(git rev-list --tags --max-count=1))>/dev/null)
   export SEMVER_RELEASE_LEVEL=$(git log --oneline -1 --pretty=%B | cat | tr -d '\n' | cut -d "[" -f2 | cut -d "]" -f1)
-
-  >&2 echo $SEMVER_LAST_TAG
 
   if [ -z $SEMVER_LAST_TAG ]; then
       >&2 echo "No tags defined"
