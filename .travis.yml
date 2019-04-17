@@ -37,9 +37,3 @@ deploy:
 branches:
   only:
   - master
-#notifications:
-#  email:
-#    recipients:
-#      - phillip.booth2015@gmail.com
-#    on_success: never # default: change
-#    on_failure: always # default: always
