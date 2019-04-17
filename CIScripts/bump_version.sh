@@ -9,7 +9,7 @@ bump_version(){
   >&2 echo $SEMVER_LAST_TAG
 
   if [ -z $SEMVER_LAST_TAG ]; then
-      #>&2 echo "No tags defined"
+      >&2 echo "No tags defined"
       SEMVER_LAST_TAG="0.0.1"
   fi
 
