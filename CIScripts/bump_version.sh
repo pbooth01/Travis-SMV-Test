@@ -21,6 +21,5 @@ bump_version(){
       exit 1
   fi
 }
-
 bump_version
 echo $SEMVER_NEW_TAG
