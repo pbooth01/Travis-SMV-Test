@@ -23,7 +23,11 @@ script:
   - echo ${version}
 after_success:
   - git push origin --tags
-  - bash $TRAVIS_BUILD_DIR/CIScripts/push_images.sh ${version}
+
+deploy:
+  provider: script
+  script:
+    - bash $TRAVIS_BUILD_DIR/CIScripts/push_images.sh ${version}
 
 # safelist
 branches:
