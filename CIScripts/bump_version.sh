@@ -8,7 +8,7 @@ bump_version(){
 
   if [ -z $SEMVER_LAST_TAG ]; then
       >&2 echo "No tags defined"
-      SEMVER_LAST_TAG="0.0.1"
+      SEMVER_LAST_TAG="0.0.0"
   fi
 
   if [ -n $SEMVER_RELEASE_LEVEL ]; then
