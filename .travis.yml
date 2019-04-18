@@ -16,7 +16,7 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 
-#Configuring docker and git so our changes can be deployed to DockerHub and tags can be pushed to our repo
+#Configuring docker and git so our changes can be deployed to DockerHub and tags can be pushed to our rep
 before_script:
   - bash $TRAVIS_BUILD_DIR/CIScripts/setup_git.sh
   - docker login -u ${DOCKER_HUB_USERNAME} -p ${DOCKER_HUB_PASSWORD}
